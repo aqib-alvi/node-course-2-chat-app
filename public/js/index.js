@@ -39,7 +39,7 @@ jQuery('#message-form').on('submit', function (e) {
 
 let locationButton = jQuery('#send-location');
 locationButton.on('click', function () {
-    if(navigator.geolocation)
+    if(!navigator.geolocation)
     {
         return alert('Geolocation not supported by your browser');
     }
@@ -48,7 +48,7 @@ locationButton.on('click', function () {
         socket.emit('createLocationMessage', {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
-        })
+        });
 
     }, function () {
         alert('Unable to fetch location.');
